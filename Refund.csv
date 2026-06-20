@@ -1,0 +1,9 @@
+refund_id,order_id,reason,status
+R1,O13,Defective,refunded
+R2,O19,Not liked,refunded
+R3,O5,By mistake,not refunded
+R4,O4,Not same as shown,refunded
+R5,O10,Defective,refunded
+R6,O17,Not same as shown,refunded
+R7,O2,Not liked,not refunded
+R8,O18,Defective,not refunded

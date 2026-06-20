@@ -1,0 +1,15 @@
+post_id,user_id,question,response,qna_date
+P6,L24,what is the price?,2000,25-08-2019
+P21,L20,what is the size?,40 min,24-12-2019
+P17,L8,what is the painting about?,himalaya,31-01-2020
+P17,L20,what is the price?,4000,10-08-2020
+P13,L9,In how many days I received delivery?,10 days,14-08-2020
+P19,L18,It is real or fake?,real,10-09-2020
+P15,L19,what is the price?,10000,26-11-2020
+P10,L9,what is the size?,30x40 cm,28-02-2021
+P24,L23,what is the colour used in this painting?,water colour,18-03-2021
+P10,L12,what is the price?,5000,14-05-2021
+P21,L7,In what form I recived this?,in video form,04-07-2021
+P21,L16,what is the price?,2000,30-08-2021
+P11,L25,what is the price?,2000,09-07-2022
+P18,L19,what is the price?,4000,03-11-2022

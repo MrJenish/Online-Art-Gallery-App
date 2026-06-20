@@ -1,0 +1,16 @@
+bid_id,user_id,post_id,bid_amount,status
+B1,L13,P12,1000,unsold
+B2,L24,P12,1500,unsold
+B3,L10,P12,2000,sold
+B4,L12,P55,1293,unsold
+B5,L15,P55,3482,unsold
+B6,L6,P55,5069,unsold
+B7,L12,P55,8956,unsold
+B8,L15,P55,9836,sold
+B9,L13,P23,1287,unsold
+B10,L6,P23,2583,unsold
+B11,L13,P23,2938,unsold
+B12,L6,P23,3472,sold
+B13,L15,P15,7584,unsold
+B14,L14,P15,9857,unsold
+B15,L15,P15,10253,sold

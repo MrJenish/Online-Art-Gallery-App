@@ -1,0 +1,494 @@
+-- Table: Art_gallery.Admin
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Admin";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Admin"
+(
+    admin_id character varying COLLATE pg_catalog."default" NOT NULL,
+    first_name character varying COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying COLLATE pg_catalog."default" NOT NULL,
+    phone_no character varying COLLATE pg_catalog."default",
+    email character varying COLLATE pg_catalog."default",
+    CONSTRAINT "Admin_pkey" PRIMARY KEY (admin_id),
+    CONSTRAINT "Admin_admin_id_fkey" FOREIGN KEY (admin_id)
+        REFERENCES "Art_gallery"."Login" (login_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Admin"
+    OWNER to postgres;
+
+
+-- Table: Art_gallery.Bidding
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Bidding";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Bidding"
+(
+    bid_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    bid_amount integer NOT NULL,
+    status character varying COLLATE pg_catalog."default",
+    CONSTRAINT "Bidding_pkey" PRIMARY KEY (bid_id),
+    CONSTRAINT "Bidding_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Bidding_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Bidding"
+    OWNER to postgres;
+
+
+-- Table: Art_gallery.Block_list
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Block_list";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Block_list"
+(
+    admin_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Block_list_pkey" PRIMARY KEY (admin_id, user_id),
+    CONSTRAINT "Block_list_admin_id_fkey" FOREIGN KEY (admin_id)
+        REFERENCES "Art_gallery"."Admin" (admin_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Block_list_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Block_list"
+    OWNER to postgres;
+
+
+-- Table: Art_gallery.Cart
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Cart";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Cart"
+(
+    cart_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    status character varying COLLATE pg_catalog."default" DEFAULT 'Order_Unplaced'::character varying,
+    total_amount integer NOT NULL,
+    order_date date,
+    CONSTRAINT "Cart_pkey" PRIMARY KEY (cart_id),
+    CONSTRAINT "Cart_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Cart"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Cart_details
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Cart_details";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Cart_details"
+(
+    cart_id character varying COLLATE pg_catalog."default" NOT NULL,
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    quantity integer NOT NULL,
+    CONSTRAINT "Cart_details_pkey" PRIMARY KEY (cart_id, post_id),
+    CONSTRAINT "Cart_details_cart_id_fkey" FOREIGN KEY (cart_id)
+        REFERENCES "Art_gallery"."Cart" (cart_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Cart_details_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Cart_details"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Comment
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Comment";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Comment"
+(
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    comment character varying COLLATE pg_catalog."default" NOT NULL,
+    comment_date date,
+    CONSTRAINT "Comment_pkey" PRIMARY KEY (post_id, user_id),
+    CONSTRAINT "Comment_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Comment_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Comment"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Favourite_post
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Favourite_post";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Favourite_post"
+(
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Favourite_post_pkey" PRIMARY KEY (user_id, post_id),
+    CONSTRAINT "Favourite_post_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Favourite_post_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Favourite_post"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Friends
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Friends";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Friends"
+(
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    friend_id character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Friends_pkey" PRIMARY KEY (user_id, friend_id),
+    CONSTRAINT "Friends_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Friends"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Like
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Like";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Like"
+(
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    like_date date,
+    CONSTRAINT "Like_pkey" PRIMARY KEY (post_id, user_id),
+    CONSTRAINT "Like_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Like_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Like"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Login
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Login";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Login"
+(
+    login_id character varying COLLATE pg_catalog."default" NOT NULL,
+    password character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Login_pkey" PRIMARY KEY (login_id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Login"
+    OWNER to postgres;
+
+
+-- Table: Art_gallery.Order
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Order";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Order"
+(
+    order_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    cart_id character varying COLLATE pg_catalog."default" NOT NULL,
+    total_amount integer NOT NULL,
+    CONSTRAINT "Order_pkey" PRIMARY KEY (order_id),
+    CONSTRAINT "Order_cart_id_fkey" FOREIGN KEY (cart_id)
+        REFERENCES "Art_gallery"."Cart" (cart_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Order_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Order"
+    OWNER to postgres;
+
+
+-- Table: Art_gallery.Order_details
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Order_details";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Order_details"
+(
+    order_id character varying COLLATE pg_catalog."default" NOT NULL,
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    quantity integer NOT NULL,
+    price integer NOT NULL,
+    CONSTRAINT "Order_details_pkey" PRIMARY KEY (order_id, post_id),
+    CONSTRAINT "Order_details_order_id_fkey" FOREIGN KEY (order_id)
+        REFERENCES "Art_gallery"."Order" (order_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Order_details_user_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Order_details"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Payment
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Payment";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Payment"
+(
+    invoice_id character varying COLLATE pg_catalog."default" NOT NULL,
+    order_id character varying COLLATE pg_catalog."default" NOT NULL,
+    payment_type character varying COLLATE pg_catalog."default",
+    payment_date date,
+    CONSTRAINT "Payment_pkey" PRIMARY KEY (invoice_id, order_id),
+    CONSTRAINT "Payment_order_id_fkey" FOREIGN KEY (order_id)
+        REFERENCES "Art_gallery"."Order" (order_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Payment"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Post
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Post";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Post"
+(
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    title character varying COLLATE pg_catalog."default",
+    art_category character varying COLLATE pg_catalog."default",
+    tag character varying COLLATE pg_catalog."default",
+    quantity integer NOT NULL,
+    price integer NOT NULL,
+    CONSTRAINT "Post_pkey" PRIMARY KEY (post_id),
+    CONSTRAINT "Post_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Post"
+    OWNER to postgres;
+
+-- Table: Art_gallery.QnA
+
+-- DROP TABLE IF EXISTS "Art_gallery"."QnA";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."QnA"
+(
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    question character varying COLLATE pg_catalog."default" NOT NULL,
+    response character varying COLLATE pg_catalog."default" NOT NULL,
+    qna_date date,
+    CONSTRAINT "QnA_pkey" PRIMARY KEY (post_id, user_id),
+    CONSTRAINT "QnA_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "QnA_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."QnA"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Rate
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Rate";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Rate"
+(
+    post_id character varying COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    rate integer,
+    CONSTRAINT "Rate_pkey" PRIMARY KEY (post_id, user_id),
+    CONSTRAINT "Rate_post_id_fkey" FOREIGN KEY (post_id)
+        REFERENCES "Art_gallery"."Post" (post_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "Rate_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."User" (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Rate"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Refund
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Refund";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Refund"
+(
+    refund_id character varying COLLATE pg_catalog."default" NOT NULL,
+    order_id character varying COLLATE pg_catalog."default" NOT NULL,
+    reason character varying COLLATE pg_catalog."default" NOT NULL,
+    status character varying COLLATE pg_catalog."default",
+    CONSTRAINT "Refund_pkey" PRIMARY KEY (refund_id, order_id),
+    CONSTRAINT "Refund_order_id_fkey" FOREIGN KEY (order_id)
+        REFERENCES "Art_gallery"."Order" (order_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Refund"
+    OWNER to postgres;
+
+-- Table: Art_gallery.Track
+
+-- DROP TABLE IF EXISTS "Art_gallery"."Track";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."Track"
+(
+    track_id character varying COLLATE pg_catalog."default" NOT NULL,
+    order_id character varying COLLATE pg_catalog."default" NOT NULL,
+    status character varying COLLATE pg_catalog."default",
+    status_date date,
+    CONSTRAINT "Track_pkey" PRIMARY KEY (track_id, order_id),
+    CONSTRAINT "Track_order_id_fkey" FOREIGN KEY (order_id)
+        REFERENCES "Art_gallery"."Order" (order_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."Track"
+    OWNER to postgres;
+
+-- Table: Art_gallery.User
+
+-- DROP TABLE IF EXISTS "Art_gallery"."User";
+
+CREATE TABLE IF NOT EXISTS "Art_gallery"."User"
+(
+    user_id character varying COLLATE pg_catalog."default" NOT NULL,
+    first_name character varying COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying COLLATE pg_catalog."default" NOT NULL,
+    phone_no character varying COLLATE pg_catalog."default",
+    email character varying COLLATE pg_catalog."default",
+    address character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "User_pkey" PRIMARY KEY (user_id),
+    CONSTRAINT "User_user_id_fkey" FOREIGN KEY (user_id)
+        REFERENCES "Art_gallery"."Login" (login_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "Art_gallery"."User"
+    OWNER to postgres;

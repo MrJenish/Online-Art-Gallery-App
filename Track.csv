@@ -1,0 +1,67 @@
+track_id,order_id,status,status_date
+T1,O1,shipped,30-04-2020
+T2,O1,out for delivery,09-09-2020
+T3,O1,arrived,10-09-2022
+T4,O2,shipped,23-03-2021
+T5,O2,out for delivery,29-03-2021
+T6,O2,arrived,30-03-2021
+T7,O3,shipped,30-11-2020
+T8,O3,out for delivery,09-12-2020
+T9,O3,arrived,10-12-2020
+T10,O4,shipped,23-07-2021
+T11,O4,out for delivery,29-07-2021
+T12,O4,arrived,31-07-2021
+T13,O5,shipped,30-11-2020
+T14,O5,out for delivery,03-12-2020
+T15,O5,arrived,05-12-2020
+T16,O6,shipped,23-07-2021
+T17,O6,out for delivery,28-07-2021
+T18,O6,arrived,30-07-2021
+T19,O7,shipped,15-03-2020
+T20,O7,out for delivery,28-08-2020
+T21,O7,arrived,30-08-2020
+T22,O8,shipped,28-12-2020
+T23,O8,out for delivery,29-12-2020
+T24,O8,arrived,31-12-2020
+T25,O9,shipped,13-06-2021
+T26,O9,out for delivery,19-06-2021
+T27,O9,arrived,21-06-2021
+T28,O10,shipped,05-07-2020
+T29,O10,out for delivery,10-07-2020
+T30,O10,arrived,11-07-2020
+T31,O11,shipped,24-10-2020
+T32,O11,out for delivery,30-10-2020
+T33,O11,arrived,02-11-2020
+T34,O12,shipped,03-01-2020
+T35,O12,out for delivery,07-01-2020
+T36,O12,arrived,10-01-2020
+T37,O13,shipped,23-08-2020
+T38,O13,out for delivery,28-08-2020
+T39,O13,arrived,30-08-2020
+T40,O14,shipped,30-12-2019
+T41,O14,out for delivery,30-12-2019
+T42,O14,arrived,31-12-2019
+T43,O15,shipped,17-06-2021
+T44,O15,out for delivery,23-06-2021
+T45,O15,arrived,25-06-2021
+T46,O16,shipped,17-06-2021
+T47,O16,out for delivery,23-06-2021
+T48,O16,arrived,25-06-2021
+T49,O17,shipped,24-10-2020
+T50,O17,out for delivery,30-10-2020
+T51,O17,arrived,02-11-2020
+T52,O18,shipped,15-04-2021
+T53,O18,out for delivery,17-04-2021
+T54,O18,arrived,18-04-2021
+T55,O19,shipped,23-07-2021
+T56,O19,out for delivery,29-07-2021
+T57,O19,arrived,31-07-2021
+T58,O20,shipped,25-06-2021
+T59,O20,out for delivery,17-06-2021
+T60,O20,arrived,23-06-2021
+T61,O21,shipped,29-10-2019
+T62,O21,out for delivery,30-10-2019
+T63,O21,arrived,31-10-2019
+T64,O22,shipped,30-04-2020
+T65,O22,out for delivery,09-09-2020
+T66,O22,arrived,10-09-2022

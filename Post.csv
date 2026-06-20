@@ -1,0 +1,60 @@
+post_id,user_id,title,art_category,tag,quantity,price
+P1,L6,himalay,painting,nature,13,4532
+P2,L22,virat,painting,potrait,12,9485
+P3,L21,cat,painting,animal,6,2779
+P4,L20,dog,painting,animal,4,4729
+P5,L24,zibra,painting,animal,12,1961
+P6,L23,laptop,painting,gadget,2,8346
+P7,L10,school,painting,building,6,2603
+P8,L19,cafeteria,painting,place,14,7275
+P9,L15,student,painting,potrait,6,701
+P10,L6,car,painting,vehicel,15,2582
+P11,L8,bullet,painting,vehicel,15,4568
+P12,L10,river,painting,nature,11,9276
+P13,L9,ball,painting,sport equipment,10,5696
+P14,L8,sport,painting,sport,14,5922
+P15,L13,guitar,painting,gadget,2,9194
+P16,L12,dance,dancing,flock,15,9524
+P17,L18,dance,dancing,contempory,6,4768
+P18,L10,dance,dancing,flock,14,7899
+P19,L25,dance,dancing,kathak,14,523
+P20,L23,dance,dancing,flock,14,6016
+P21,L19,dance,dancing,flock,8,9971
+P22,L17,dance,dancing,flock,11,8052
+P23,L16,dance,dancing,hip-hop,5,855
+P24,L22,dance,dancing,flock,6,6725
+P25,L20,dance,dancing,garba,7,5025
+P26,L19,dance,dancing,bharatnatyam,15,3315
+P27,L12,dance,dancing,ballet,9,6255
+P28,L15,dance,dancing,Jazz,7,3949
+P29,L17,dance,dancing,garba,6,5554
+P30,L19,dance,dancing,Lyrical,5,4420
+P31,L15,dance,dancing,garba,7,3221
+P32,L19,love me,singing,hollywood,8,6147
+P33,L7,manike,singing,bollywood,11,2199
+P34,L6,taki taki,singing,english,1,3835
+P35,L9,raddo,singing,gujarati,11,1051
+P36,L8,prem,singing,hindi,13,7842
+P37,L10,song,singing,hollywood,2,7087
+P38,L11,song,singing,bollywood,11,792
+P39,L13,stay,singing,english,11,6083
+P40,L14,song,singing,gujarati,3,1440
+P41,L19,aayat,singing,hindi,6,9979
+P42,L16,song,singing,hollywood,11,4017
+P43,L13,bad_boy,singing,bollywood,10,4787
+P44,L10,pani pani,singing,english,2,2583
+P45,L9,breathless,singing,gujarati,6,2079
+P46,L9,song,singing,hindi,12,8905
+P47,L7,ganesha,painting,potrait,9,397
+P48,L8,dance,dancing,kathak,3,4156
+P49,L19,song,signing,gujarati,12,5402
+P50,L21,abhay,painting,potrait,6,2627
+P51,L23,guru,sculpture,human,2,8346
+P52,L10,god,sculpture,god,6,2603
+P53,L19,love,poetry,love,1,200
+P54,L15,animal,sculpture,animal,6,701
+P55,L6,the_eye,poetry,eye,1,500
+P56,L8,human,sculpture,human,15,4568
+P57,L19,how to success,book,,2,1050
+P58,L7,atomic change,book,,5,2000
+P59,L6,money-money,book,,4,1300
